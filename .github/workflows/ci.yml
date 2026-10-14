@@ -1,0 +1,23 @@
+name: Check Student Data File
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  check-file:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check studentdata.txt
+        run: |
+          if [ -f studentdata.txt ]; then
+            echo "studentdata.txt exists."
+          else
+            echo "Error: studentdata.txt does not exist!"
+            exit 1
+          fi
